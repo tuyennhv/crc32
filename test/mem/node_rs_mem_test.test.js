@@ -4,6 +4,9 @@ const nodeRsCrc32c = nodeRs.crc32c;
 const bytes = Buffer.alloc(1000);
 
 
+/**
+ * Refer to https://github.com/napi-rs/node-rs/issues/655
+ */
 async function memTest() {
   const count = 1_000_000_000;
   for (let i = 0; i < count; i++) {

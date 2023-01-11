@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "mocha test/unit/*.test.js",
+    "test:mem": "node test/mem/node_rs_mem_test.test.js",
+    "test:perf": "benchmark test/perf/benchmark.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +15,7 @@
   },
   "devDependencies": {
     "@dapplion/benchmark": "^0.2.4",
+    "chai": "^4.3.7",
     "mocha": "10.0.0"
   }
 }

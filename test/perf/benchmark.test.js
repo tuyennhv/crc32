@@ -1,6 +1,8 @@
 const nodeRs = require("@node-rs/crc32");
 const {itBench, setBenchOpts} = require("@dapplion/benchmark");
-const crc32c = nodeRs.crc32c;
+const jsCrc32cImport = require("../../src/js_crc32c");
+const nodeRsCrc32c = nodeRs.crc32c;
+const jsCrc32c = jsCrc32cImport.calculate;
 
 describe("crc32 implementations", function () {
   setBenchOpts({
@@ -12,7 +14,12 @@ describe("crc32 implementations", function () {
   itBench({
     id: "@node-rs/crc32",
     fn: () => {
-      crc32c(bytes);
+      nodeRsCrc32c(bytes);
     }
+  })
+
+  itBench({
+    id: "@js_crc32c",
+    fn: () => jsCrc32c(bytes),
   })
 });

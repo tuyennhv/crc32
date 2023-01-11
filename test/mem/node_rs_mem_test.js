@@ -1,5 +1,5 @@
 const nodeRs = require("@node-rs/crc32");
-const crc32c = nodeRs.crc32c;
+const nodeRsCrc32c = nodeRs.crc32c;
 
 const bytes = Buffer.alloc(1000);
 
@@ -7,7 +7,7 @@ const bytes = Buffer.alloc(1000);
 async function memTest() {
   const count = 1_000_000_000;
   for (let i = 0; i < count; i++) {
-    crc32c(bytes);
+    nodeRsCrc32c(bytes);
     if (i % 100_000 === 0) {
       await new Promise((resolve) => setTimeout(resolve, 100));
       const {heapTotal, rss} = process.memoryUsage();

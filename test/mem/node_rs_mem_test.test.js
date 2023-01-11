@@ -1,11 +1,13 @@
-const nodeRs = require("@node-rs/crc32");
 const Sse4Crc32 = require("sse4_crc32");
-const nodeRsCrc32c = nodeRs.crc32c;
+// Enable this to show memory test issue
+// const nodeRsCrc32c = nodeRs.crc32c;
+// const nodeRs = require("@node-rs/crc32");
 
 const bytes = Buffer.alloc(1000);
 
 
 /**
+ * No memory issue with sse4_crc32 but @node-rs/crc32
  * Refer to https://github.com/napi-rs/node-rs/issues/655
  */
 async function memTest() {

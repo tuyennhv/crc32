@@ -1,0 +1,18 @@
+{
+  "name": "crc32-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@node-rs/crc32": "1.5.1"
+  },
+  "devDependencies": {
+    "@dapplion/benchmark": "^0.2.4",
+    "mocha": "10.0.0"
+  }
+}

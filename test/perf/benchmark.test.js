@@ -1,6 +1,7 @@
 const nodeRs = require("@node-rs/crc32");
 const {itBench, setBenchOpts} = require("@dapplion/benchmark");
 const Sse4Crc32 = require("sse4_crc32");
+const crypto = require("node:crypto");
 const jsCrc32cImport = require("../../src/js_crc32c");
 const nodeRsCrc32c = nodeRs.crc32c;
 const jsCrc32c = jsCrc32cImport.calculate;
@@ -31,7 +32,7 @@ describe("crc32 implementations", function () {
 
   const counts = [500, 1000, 10_000, 100_000, 1_000_000];
   for (const c of counts) {
-    const bytes = Buffer.alloc(c);
+    const bytes = crypto.randomBytes(c);
 
     itBench({
       id: `@node-rs/crc32 ${c} bytes`,

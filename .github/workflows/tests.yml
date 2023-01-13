@@ -26,4 +26,4 @@ jobs:
         run: echo "::set-output name=v8CppApiVersion::$(node --print "process.versions.modules")"
       - name: Confirm output
         id: confirm-output
-        run: echo "v8CppApiVersion: {{ steps.node.outputs.v8CppApiVersion }}"
+        run: echo "v8CppApiVersion: ${{ steps.node.outputs.v8CppApiVersion }}"

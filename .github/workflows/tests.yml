@@ -1,0 +1,34 @@
+name: Tests
+
+on:
+  push:
+    # We intentionally don't run push on feature branches. See PR for rational.
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests-main:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18]
+    steps:
+      # <common-build> - Uses YAML anchors in the future
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{matrix.node}}
+      - name: Node.js version
+        id: node
+        run: echo "v8CppApiVersion=$(node --print "process.versions.modules")"  >> $GITHUB_OUTPUT
+      - name: Confirm output
+        run: echo "v8CppApiVersion is ${{ steps.node.outputs.v8CppApiVersion }}"
+      - name: Install & build
+        run: yarn install
+      # </common-build>
+
+      - name: Unit test
+        run: yarn test:unit

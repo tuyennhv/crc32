@@ -30,7 +30,7 @@ jobs:
         id: validate_rc
         run: scripts/assert_valid_rc.sh
       - name: Confirm output from validate_rc
-        run: echo "is_rc is ${{ steps.validate_rc.outputs.is_rc }}"
+        run: echo "is_rc is ${{ steps.validate_rc.outputs.is_rc }} version is ${{ steps.validate_rc.outputs.version }}"
       - name: Install & build
         run: yarn install
       # </common-build>

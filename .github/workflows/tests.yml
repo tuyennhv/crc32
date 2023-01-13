@@ -27,7 +27,7 @@ jobs:
       - name: Confirm output
         run: echo "v8CppApiVersion is ${{ steps.node.outputs.v8CppApiVersion }}"
       - name: Install & build
-        run: yarn install --frozen-lockfile --ignore-optional
+        run: yarn install
       # </common-build>
 
       - name: Unit test

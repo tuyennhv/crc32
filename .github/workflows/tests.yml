@@ -33,6 +33,11 @@ jobs:
         run: |
           echo "is_rc is ${{ steps.validate_rc.outputs.is_rc }} version is ${{ steps.validate_rc.outputs.version }}"
           echo "current branch is ${GITHUB_REF}"
+      - name: Set output in js
+        id: get_prev_tag
+        run: node scripts/get_prev_tag.js
+      - name: Confirm output from js script
+        run: echo "prev_tag is ${{ steps.get_prev_tag.outputs.prev_tag }}"
       - name: Install & build
         run: yarn install
       # </common-build>

@@ -1,0 +1,1 @@
+console.log(`prev_tag=v1.2023.0 >> $GITHUB_OUTPUT`);

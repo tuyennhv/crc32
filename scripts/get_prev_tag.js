@@ -3,6 +3,7 @@ const {promisify} = require("node:util");
 
 async function run() {
   const tag = "v1.2023.0";
+  console.log("GITHUB_OUTPUT is", process.env.GITHUB_OUTPUT);
   await promisify(exec)(`prev_tag=${tag} >> $GITHUB_OUTPUT`);
 }
 

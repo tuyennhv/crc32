@@ -1,1 +1,12 @@
-console.log(`prev_tag=v1.2023.0 >> $GITHUB_OUTPUT`);
+const {exec} = require("node:child_process");
+const {promisify} = require("node:util");
+
+async function run() {
+  const tag = "v1.2023.0";
+  await promisify(exec)(`prev_tag=${tag} >> $GITHUB_OUTPUT`);
+}
+
+run().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

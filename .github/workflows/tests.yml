@@ -23,9 +23,16 @@ jobs:
           node-version: ${{matrix.node}}
       - name: Node.js version
         id: node
-        run: echo "v8CppApiVersion=$(node --print "process.versions.modules")"  >> $GITHUB_OUTPUT
-      - name: Confirm output
+        run: echo "v8CppApiVersion=$(node --print "process.versions.modules")" >> $GITHUB_OUTPUT
+      - name: Confirm output from node
         run: echo "v8CppApiVersion is ${{ steps.node.outputs.v8CppApiVersion }}"
+      - name: Set output in shell script
+        id: validate_rc
+        run: scripts/assert_valid_rc.sh
+      - name: Confirm output from validate_rc
+        run: |
+          echo "is_rc is ${{ steps.validate_rc.outputs.is_rc }} version is ${{ steps.validate_rc.outputs.version }}"
+          echo "current branch is ${GITHUB_REF}"
       - name: Install & build
         run: yarn install
       # </common-build>
